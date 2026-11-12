@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro y Verificación 2FA</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="card">
+
+        <!-- VISTA 1: REGISTRO -->
+        <div id="step1">
+            <h2>1. Registro de Usuario</h2>
+            <form id="registerForm">
+                <label for="regUser">Usuario:</label>
+                <input type="text" id="regUser" placeholder="Tu nombre de usuario" required autocomplete="username">
+
+                <label for="regPass">Contraseña (mín. 8):</label>
+                <input type="password" id="regPass" placeholder="Tu contraseña" minlength="8" required autocomplete="new-password">
+
+                <button type="submit">Registrarse</button>
+            </form>
+            <div id="regMsg" class="msg"></div>
+            <p class="msg"><a href="#" id="goLogin">Ya tengo cuenta</a></p>
+        </div>
+
+        <!-- VISTA 2: VERIFICACIÓN (QR + código) -->
+        <div id="step2" class="hidden">
+            <h2>2. Verificación de Seguridad</h2>
+            <p class="hint">Escanea el QR con Google Authenticator, o copia esta llave:</p>
+            <img id="qrImage" alt="Código QR">
+            <div id="secretDisplay" class="secret-box"></div>
+
+            <form id="verifyForm">
+                <label for="tokenCode">Ingresa el código de 6 dígitos de tu app:</label>
+                <input type="text" id="tokenCode" maxlength="6" placeholder="123456" inputmode="numeric" pattern="[0-9]{6}" required autocomplete="one-time-code">
+
+                <button type="submit" class="btn-blue">Verificar y Acceder</button>
+            </form>
+            <div id="verifyMsg" class="msg"></div>
+        </div>
+
+        <!-- VISTA 3: LOGIN (cuentas ya registradas) -->
+        <div id="step3" class="hidden">
+            <h2>Iniciar sesión</h2>
+            <form id="loginForm">
+                <label for="logUser">Usuario:</label>
+                <input type="text" id="logUser" required autocomplete="username">
+
+                <label for="logPass">Contraseña:</label>
+                <input type="password" id="logPass" required autocomplete="current-password">
+
+                <label for="logCode">Código de Google Authenticator:</label>
+                <input type="text" id="logCode" maxlength="6" placeholder="123456" inputmode="numeric" pattern="[0-9]{6}" required autocomplete="one-time-code">
+
+                <button type="submit" class="btn-blue">Entrar</button>
+            </form>
+            <div id="logMsg" class="msg"></div>
+            <p class="msg"><a href="#" id="goRegister">Crear cuenta nueva</a></p>
+        </div>
+
+        <!-- VISTA 4: BIENVENIDA -->
+        <div id="step4" class="hidden">
+            <h2 id="welcomeMsg"></h2>
+            <p class="hint">Sesión iniciada con JWT (expira en 15 min).</p>
+            <button type="button" id="btnAdmin" class="btn-blue">Probar /api/admin</button>
+            <div id="adminMsg" class="msg"></div>
+            <button type="button" id="btnLogout">Cerrar sesión</button>
+        </div>
+
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

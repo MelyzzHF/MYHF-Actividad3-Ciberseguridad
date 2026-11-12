@@ -1,0 +1,22 @@
+
+# Secretos y variables de entorno
+.env
+users.json
+admin-qr.png
+*token*
+*password*
+*.pem
+*.key
+
+# Datos locales de LocalStack
+laboratorio/volume/
+laboratorio/.localstack/
+
+# Terraform 
+*.tfstate
+*.tfstate.*
+.terraform/
+*.tfvars
+
+# Node
+node_modules/
